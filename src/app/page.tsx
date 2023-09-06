@@ -6,11 +6,18 @@ import { highlight, languages } from "prismjs";
 import "prismjs/components/prism-sql";
 import "prismjs/themes/prism-dark.css"; //Example style, you can use another
 import { useState } from "react";
+import { useCompletion } from "ai/react";
 
 export default function Home() {
-  const [code, setCode] = useState("");
-  const [question, setQuestion] = useState("");
-  const result = "";
+  const [schema, setSchema] = useState("");
+  const { completion, handleSubmit, input, handleInputChange } = useCompletion({
+    api: "/api/generate-sql",
+    body: {
+      schema,
+    },
+  });
+
+  const result = completion;
 
   return (
     <div className="max-w-[430px] mx-auto px-4 pt-12 pb-4">
@@ -56,15 +63,18 @@ export default function Home() {
         </button>
       </header>
 
-      <form className="py-8 w-full flex flex-col text-foam">
+      <form
+        onSubmit={handleSubmit}
+        className="py-8 w-full flex flex-col text-foam"
+      >
         <label htmlFor="schema" className="text-lg font-light">
           Cole seu código SQL aqui:
         </label>
 
         <Editor
           textareaId="schema"
-          value={code}
-          onValueChange={(code) => setCode(code)}
+          value={schema}
+          onValueChange={(code) => setSchema(code)}
           highlight={(code) => highlight(code, languages.sql, "sql")}
           padding={16}
           textareaClassName="outline-none"
@@ -77,8 +87,8 @@ export default function Home() {
         <textarea
           name="question"
           id="question"
-          value={question}
-          onChange={(e) => setQuestion(e.target.value)}
+          value={input}
+          onChange={handleInputChange}
           className="my-4 bg-blueberry-600 border border-blueberry-300 rounded-md px-4 py-3 focus:ring-1 focus:ring-lime-600"
         />
 
@@ -94,7 +104,7 @@ export default function Home() {
       <div className="mt-6">
         <span className="text-lg font-light text-foam">Resposta:</span>
 
-        <Editor
+        {/* <Editor
           readOnly
           value={result}
           onValueChange={() => {}}
@@ -102,6 +112,13 @@ export default function Home() {
           padding={16}
           textareaClassName="outline-none"
           className="my-4 w-full bg-transparent border border-blueberry-300 rounded-md"
+        /> */}
+
+        <textarea
+          name="question"
+          id="question"
+          value={result}
+          className="my-4 w-full h-40 text-foam font-mono bg-blueberry-600 border border-blueberry-300 rounded-md px-4 py-3 focus:ring-1 focus:ring-lime-600"
         />
       </div>
     </div>

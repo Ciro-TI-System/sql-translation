@@ -29,7 +29,35 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - **Editor de código simples com sintaxe highlighting [react-simple-code-editor](https://github.com/react-simple-code-editor/react-simple-code-editor)**
 - **[prismjs](https://prismjs.com/docs/index.html)**
 - **[data-base-schema-examples](https://github.com/prisma/database-schema-examples/blob/main/postgres/basic-twitter/schema.sql)**
+
+<em>
+create table if not exists users (
+  id uuid primary key not null default gen_random_uuid(),
+  "name" text not null,
+  handle text not null,
+  created_at timestamp not null default now(),
+  updated_at timestamp not null default now()
+);
+
+create trigger updated_at before update on users for each row execute procedure set_updated_at();
+
+create table if not exists locations (
+  id uuid primary key not null default gen_random_uuid(),
+  latitude float not null,
+  longitude float not null
+);
+
+create table if not exists tweets (
+  id uuid primary key not null default gen_random_uuid(),
+  created_at timestamp not null default now(),
+  "text" text not null,
+  "owner" uuid not null references users(id) on delete cascade,
+  "location" uuid not null references locations(id) on delete cascade
+);
+</em>
+
 - **[Vercel AI SDK](https://sdk.vercel.ai/docs/getting-started)**
+- **[Chave OPEN IA](https://platform.openai.com/)**
 
 <br>
 
@@ -54,6 +82,9 @@ Rota Padrão: `http://localhost:3000/`
 
 - Instalar os pacotes Vercel AI SDK: <br>
 `pnpm install ai openai`
+
+- Crie uma conta e gere uma chave na plataforma da OPEN IA: <br>
+`https://platform.openai.com/account/api-keys`
 
 <br>
 

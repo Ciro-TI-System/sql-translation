@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${UbuntuMono.variable}`}>
+    <html lang="pt-br" className={`${inter.variable} ${UbuntuMono.variable}`}>
       <body className="bg-blueberry-900">{children}</body>
     </html>
   );
