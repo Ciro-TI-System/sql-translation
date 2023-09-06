@@ -1,6 +1,17 @@
+"use client";
+
 import { Trash2, Stars } from "lucide-react";
+import Editor from "react-simple-code-editor";
+import { highlight, languages } from "prismjs";
+import "prismjs/components/prism-sql";
+import "prismjs/themes/prism-dark.css"; //Example style, you can use another
+import { useState } from "react";
 
 export default function Home() {
+  const [code, setCode] = useState("");
+  const [question, setQuestion] = useState("");
+  const result = "";
+
   return (
     <div className="max-w-[430px] mx-auto px-4 pt-12 pb-4">
       <header className="flex items-center justify-between">
@@ -49,19 +60,26 @@ export default function Home() {
         <label htmlFor="schema" className="text-lg font-light">
           Cole seu código SQL aqui:
         </label>
-        <textarea
-          className="my-4 bg-blueberry-600 border border-blueberry-300 rounded-md px-4 py-3 outline-none focus:ring-2 focus:ring-lime-600"
-          name="schema"
-          id="schema"
+
+        <Editor
+          textareaId="schema"
+          value={code}
+          onValueChange={(code) => setCode(code)}
+          highlight={(code) => highlight(code, languages.sql, "sql")}
+          padding={16}
+          textareaClassName="outline-none"
+          className="my-4 h-40 font-mono bg-blueberry-600 border border-blueberry-300 rounded-md px-4 py-3 focus-within:ring-1 focus-within:ring-lime-600"
         />
 
         <label htmlFor="question" className="text-lg font-light">
           Faça uma pergunta sobre o código:
         </label>
         <textarea
-          className="my-4 bg-blueberry-600 border border-blueberry-300 rounded-md px-4 py-3 outline-none focus:ring-2 focus:ring-lime-600"
           name="question"
           id="question"
+          value={question}
+          onChange={(e) => setQuestion(e.target.value)}
+          className="my-4 bg-blueberry-600 border border-blueberry-300 rounded-md px-4 py-3 focus:ring-1 focus:ring-lime-600"
         />
 
         <button
@@ -74,12 +92,16 @@ export default function Home() {
       </form>
 
       <div className="mt-6">
-        <span className="text-lg font-light text-foam">
-          Resposta:
-        </span>
-        <textarea
+        <span className="text-lg font-light text-foam">Resposta:</span>
+
+        <Editor
           readOnly
-          className="my-4 w-full bg-transparent border border-blueberry-300 rounded-md px-4 py-3 outline-none focus:ring-2 focus:ring-lime-600"
+          value={result}
+          onValueChange={() => {}}
+          highlight={(code) => highlight(code, languages.sql, "sql")}
+          padding={16}
+          textareaClassName="outline-none"
+          className="my-4 w-full bg-transparent border border-blueberry-300 rounded-md"
         />
       </div>
     </div>

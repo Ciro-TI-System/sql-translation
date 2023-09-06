@@ -26,23 +26,34 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - **[Tailwind](https://tailwindcss.com/docs/installation)**
 - **Pacote de Ícones [Lucide](https://phosphoricons.com/)**
 - **Para pré-carregamento da fonte pelo servidor [next/font/google](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts)**
+- **Editor de código simples com sintaxe highlighting [react-simple-code-editor](https://github.com/react-simple-code-editor/react-simple-code-editor)**
+- **[prismjs](https://prismjs.com/docs/index.html)**
+- **[data-base-schema-examples](https://github.com/prisma/database-schema-examples/blob/main/postgres/basic-twitter/schema.sql)**
+- **[Vercel AI SDK](https://sdk.vercel.ai/docs/getting-started)**
 
 <br>
 
 ## 🚀 Como Utilizar
 
-- NextJS - Instalar e iniciar o NextJS:
-<br>
-
+- NextJS - Instalar e iniciar o NextJS: <br>
 `pnpm create next-app [nome da aplicação]`
-<br>
 
-- Para rodar a aplicação: `pnpm dev`
-<br>
+- Para rodar a aplicação: <br>
+`pnpm dev`
 
-Rota Padrão: `http://localhost:3001/`
+Rota Padrão: `http://localhost:3000/`
 
-- Instalar o lucide: `pnpm i lucide-react`
+- Instalar o lucide: <br>
+`pnpm i lucide-react`
+
+- Instalar o react-simple-code-editor: <br>
+`pnpm i react-simple-code-editor`
+
+- Instalar o prismjs e dependências: <br>
+`pnpm i prismjs` <br> `pnpm i @types/prismjs -D`
+
+- Instalar os pacotes Vercel AI SDK: <br>
+`pnpm install ai openai-edge`
 
 <br>
 
