@@ -53,7 +53,7 @@ Rota Padrão: `http://localhost:3000/`
 `pnpm i prismjs` <br> `pnpm i @types/prismjs -D`
 
 - Instalar os pacotes Vercel AI SDK: <br>
-`pnpm install ai openai-edge`
+`pnpm install ai openai`
 
 <br>
 
